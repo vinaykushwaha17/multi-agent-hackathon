@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌐 Multi Planner Agent (Multi-Agent System)
 
 This project is a real-time AI-based travel planner built using **Google Gemini 2.5 Pro**, allowing users to ask travel-related queries and view detailed trace logs of the AI's reasoning process.
@@ -91,3 +92,6 @@ npm start
 
 ##
 
+=======
+# multi-agent-hackathon
+>>>>>>> 0859c6bbe57b4d5e086941a7f56811f1badc19ff
