@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #1d3557;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #457b9d;
+}
+
+.response-box {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.trace-viewer {
+  text-align: left;
+  margin-top: 1.5rem;
+}
+.response-box, .trace-box {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.markdown-output {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+.trace-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.trace-box li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
