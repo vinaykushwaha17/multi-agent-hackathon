@@ -93,14 +93,13 @@ pre {
 }
 
 
-.loader {
+.loader-container {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
-  font-size: 16px;
-  color: #555;
 }
+
 
 
 @keyframes blink {
