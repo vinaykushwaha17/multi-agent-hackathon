@@ -2,16 +2,43 @@ import React, { useState } from 'react';
 import QueryForm from './components/QueryForm';
 import TraceViewer from './components/TraceViewer';
 import ReactMarkdown from 'react-markdown';
+import { ClipLoader } from 'react-spinners';
+
 import './App.css';
 
 function App() {
   const [query, setQuery] = useState('');
   const [response, setResponse] = useState(null);
   const [traceLogs, setTraceLogs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  // const handleQuerySubmit = async () => {
+  //   console.log("Sending query:", query);
+
+  //   const trimmedQuery = query.trim();
+  //   if (trimmedQuery === '') {
+  //     setResponse({
+  //       summary: "❌ No valid query provided.",
+  //       trace: [{
+  //         role: "System",
+  //         action: "Validation",
+  //         result: "Empty or invalid query."
+  //       }]
+  //     });
+  //     return;
+  //   }
+
+  //   const res = await fetch('http://localhost:5000/api/ask', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ query: trimmedQuery })
+  //   });
+
+  //   const data = await res.json();
+  //   setResponse(data.summary ? data : null);
+  //   setTraceLogs(data.trace || []);
+  // };
   const handleQuerySubmit = async () => {
-    console.log("Sending query:", query);
-
     const trimmedQuery = query.trim();
     if (trimmedQuery === '') {
       setResponse({
@@ -24,16 +51,31 @@ function App() {
       });
       return;
     }
-
-    const res = await fetch('http://localhost:5000/api/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: trimmedQuery })
-    });
-
-    const data = await res.json();
-    setResponse(data.summary ? data : null);
-    setTraceLogs(data.trace || []);
+  
+    setLoading(true); // Show loader
+  
+    try {
+      const res = await fetch('http://localhost:5000/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: trimmedQuery })
+      });
+  
+      const data = await res.json();
+      setResponse(data.summary ? data : null);
+      setTraceLogs(data.trace || []);
+    } catch (error) {
+      setResponse({
+        summary: "⚠️ Something went wrong.",
+        trace: [{
+          role: "System",
+          action: "Error",
+          result: error.message
+        }]
+      });
+    }
+  
+    setLoading(false); // Hide loader
   };
 
   return (
@@ -63,6 +105,13 @@ function App() {
           </ul>
         </div>
       )}
+      {loading && (
+  <div className="loader">
+    <ClipLoader size={50} color="#007bff" />
+    <p>Generating response...</p>
+  </div>
+)}
+
     </div>
   );
 }
